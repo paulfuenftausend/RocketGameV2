@@ -1,4 +1,4 @@
-package src.player;
+package player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
