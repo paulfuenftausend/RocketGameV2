@@ -18,10 +18,11 @@ public class Shot extends Sprite{
 	public Sprite sprite;
 
 	public Shot(String texture, float x, float y){
-		super(new Texture(texture));
+		sprite = new Sprite(new Texture(texture));
 		
 		this.x = x;
 		this.y = y;
+		
 	}
 	
 	public void physischerKoerper(){
@@ -43,7 +44,8 @@ public class Shot extends Sprite{
 	}
 	
 	public void setMovingDirection(float rotationDegrees, float length){
-		direction.set(1,0);
+		direction = new Vector2();
+		direction.set(1, 0);
 		direction.rotate(rotationDegrees);
 		direction.setLength(length);
 	}

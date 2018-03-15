@@ -7,6 +7,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.MyGdxGame;
@@ -18,7 +19,6 @@ import player.Shot;
 import player.Star;
 
 public class MainGame implements Screen{
-	
 	private MyGdxGame game;
 	
 	private Sprite bgGame;
@@ -67,7 +67,7 @@ public class MainGame implements Screen{
 						Shot bullet = new Shot("FireShotSprite.png", (0-(cannon.sprite.getWidth()/8))+vector.x,255+vector.y);
 							
 						bullet.setMovingDirection(cannon.sprite.getRotation(), (5*cannon.sprite.getWidth())/8);
-						bullet.sprite.setRotation(cannon.sprite.getRotation());
+						//bullet.sprite.setRotation(cannon.sprite.getRotation());
 						bullet.update(Gdx.graphics.getDeltaTime());
 						bullets.add(bullet);
 						lastShoot = System.nanoTime();
@@ -88,6 +88,8 @@ public class MainGame implements Screen{
 		actor.movement();
 		cannon.drehen();
 		cannon.draw();
+		for(Shot bullet : bullets){
+			bullet.sprite.draw(game.getBatch());}
 		game.getBatch().end();
 		
 		//world.step(Gdx.graphics.getDeltaTime(), 6, 2);
