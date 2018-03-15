@@ -1,3 +1,5 @@
+//Klasse bis auf Physik von Robert, Physik von Paul
+
 package player;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -25,15 +27,15 @@ public class Shot extends Sprite{
 		
 	}
 	
-	public void physischerKoerper(){
-		BodyDef bodyDef = new BodyDef();
+	public void physischerKoerper(){// zwar nicht genutzt aber für die Zukunft 
+		BodyDef bodyDef = new BodyDef(); //'config' für den Physik Body
 		
 		bodyDef.type = BodyDef.BodyType.DynamicBody; //von allen Kräften beeinflusst (Gravitation, schieben, ziehen...)
 		bodyDef.position.set(getX(), getY()); //Körper an die selbe Stelle wie Textur legen
 		
 		body = world.createBody(bodyDef);
 		
-		PolygonShape shape = new PolygonShape();
+		PolygonShape shape = new PolygonShape(); //Hitbox 
 		shape.setAsBox(getWidth()/2, getHeight()/2);
 		
 		FixtureDef fixtureDef = new FixtureDef();

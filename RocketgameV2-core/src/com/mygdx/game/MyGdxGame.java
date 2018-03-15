@@ -1,3 +1,5 @@
+//Die ganze Klasse - Paul
+
 package com.mygdx.game;
 
 import com.badlogic.gdx.Game;
@@ -10,7 +12,7 @@ public class MyGdxGame extends Game {
 	private SpriteBatch batch;
 	
 	@Override
-	public void create () {
+	public void create () { //erster Screen - Menu
 		batch = new SpriteBatch();
 		setScreen(new MainMenu(this));
 	}

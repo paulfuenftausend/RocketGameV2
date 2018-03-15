@@ -1,3 +1,5 @@
+//Ganze Klasse - Paul
+
 package player;
 
 import com.badlogic.gdx.Gdx;
@@ -16,7 +18,7 @@ public class Actor extends Sprite{
 	private World world;
 	public Body body;
 	
-	public Actor(String texture, float x, float y, World world){
+	public Actor(String texture, float x, float y, World world){ //Konstruktor
 		super(new Texture(texture));
 		this.world = world;
 		setPosition(x - getWidth(), y - getHeight());
@@ -24,32 +26,32 @@ public class Actor extends Sprite{
 	}
 	
 	
-	public void physischerKoerper() //erstellung eines Physischen Körpers um Berührung zu registrieren
+	public void physischerKoerper() //erstellung eines Physischen Körpers um Berührung zu registrieren, wird nicht genutzt aber vllt in zukunft
 	{
-		BodyDef bodyDef = new BodyDef();
+		BodyDef bodyDef = new BodyDef(); // 'config' des Körpers
 		
 		bodyDef.type = BodyDef.BodyType.DynamicBody; //von allen Kräften beeinflusst (Gravitation, schieben, ziehen...)
 		bodyDef.position.set(getX(), getY()); //Körper an die selbe Stelle wie Textur legen
 		
 		body = world.createBody(bodyDef);
 		
-		PolygonShape shape = new PolygonShape();
+		PolygonShape shape = new PolygonShape(); //Hitbox
 		shape.setAsBox(getWidth()/2, getHeight()/2);
 		
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = shape;
-		fixtureDef.density = 1;
+		fixtureDef.density = 1; //'Masse' für Gravitation
 		
 		body.createFixture(fixtureDef);
 		shape.dispose();
 	}
 	
-	public void updateActor(){
+	public void updateActor(){ //Theoretisch update von Textur an Position vom Körper
 		this.setPosition(body.getPosition().x, body.getPosition().y);
 	}
 	
 	
-	public void move(){
+	public void move(){ //Bewegung des Physischen Körpers, nicht genutzt
 		if(body.getPosition().x != Gdx.input.getX()){
 			if(body.getPosition().x > Gdx.input.getX()){
 				body.applyLinearImpulse(new Vector2(-movementSpeed, 0), new Vector2(body.getWorldCenter()), true);
@@ -66,7 +68,7 @@ public class Actor extends Sprite{
 		}
 	}
 	
-	public void movement()
+	public void movement() //Bewegung des Sprite
 	{
 		
 		float ballMittelX = getX()+getWidth()/2;

@@ -1,6 +1,7 @@
+//Die ganze Klasse - Paul
+
 package scenes;
 
-import javax.swing.JButton;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -38,7 +39,7 @@ public class MainMenu implements Screen {
 		game.getBatch().begin();
 		game.getBatch().draw(bg, 0, 0);
 		game.getBatch().draw(startButton, GameInfo.WIDTH/4, GameInfo.HEIGHT/2);
-		if(Gdx.input.equals(startButton) || Gdx.input.isButtonPressed(Input.Buttons.LEFT))
+		if(Gdx.input.equals(startButton) || Gdx.input.isButtonPressed(Input.Buttons.LEFT)) //Recht einfache Lösung für einen StartButton
 			game.setScreen(new MainGame(game));
 		game.getBatch().end();
 		

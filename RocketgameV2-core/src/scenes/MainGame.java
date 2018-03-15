@@ -1,3 +1,5 @@
+//Hauptsächlich Paul, mit Kanone und schießen zusammenhängend Robert
+
 package scenes;
 
 import java.util.ArrayList;
@@ -7,7 +9,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.MyGdxGame;
@@ -19,6 +20,7 @@ import player.Shot;
 import player.Star;
 
 public class MainGame implements Screen{
+	
 	private MyGdxGame game;
 	
 	private Sprite bgGame;
@@ -31,7 +33,6 @@ public class MainGame implements Screen{
 	
 	private Star star;
 	
-	private Shot shot;
 	
 	//Shooting
 			ArrayList<Shot> bullets;
@@ -39,10 +40,10 @@ public class MainGame implements Screen{
 			float fireRate = 400000000;
 			float lastShoot;
 	
-	public MainGame(MyGdxGame game){
+	public MainGame(MyGdxGame game){ //Constructor, wird in MainMenu gerufen
 		this.game = game;
 		bgGame = new Sprite(new Texture("2012-05-25 Virgo Haufen_DBE_ATWT_BN_CC_L_DONE_modified.jpg"));
-		world = new World(new Vector2(0, 0), true);			
+		world = new World(new Vector2(0, 0), true);		//Physik welt 	
 	}
 	
 	@Override
@@ -67,7 +68,7 @@ public class MainGame implements Screen{
 						Shot bullet = new Shot("FireShotSprite.png", (0-(cannon.sprite.getWidth()/8))+vector.x,255+vector.y);
 							
 						bullet.setMovingDirection(cannon.sprite.getRotation(), (5*cannon.sprite.getWidth())/8);
-						//bullet.sprite.setRotation(cannon.sprite.getRotation());
+						bullet.sprite.setRotation(cannon.sprite.getRotation());
 						bullet.update(Gdx.graphics.getDeltaTime());
 						bullets.add(bullet);
 						lastShoot = System.nanoTime();
@@ -78,12 +79,10 @@ public class MainGame implements Screen{
 				for(Shot bullet : bullets){
 					bullet.update(Gdx.graphics.getDeltaTime());
 				}
-		//actor.updateActor();
 		
 		game.getBatch().begin();
 		game.getBatch().draw(bgGame, 0, 0);
 		game.getBatch().draw(actor, actor.getX(), actor.getY());
-		//game.getBatch().draw(cannon, cannon.getX(), cannon.getY());
 		game.getBatch().draw(star, star.getX(), star.getY());
 		actor.movement();
 		cannon.drehen();
@@ -91,8 +90,6 @@ public class MainGame implements Screen{
 		for(Shot bullet : bullets){
 			bullet.sprite.draw(game.getBatch());}
 		game.getBatch().end();
-		
-		//world.step(Gdx.graphics.getDeltaTime(), 6, 2);
 		
 	}
 
