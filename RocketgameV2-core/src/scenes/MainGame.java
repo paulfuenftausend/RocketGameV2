@@ -48,10 +48,11 @@ public class MainGame implements Screen{
 		game.getBatch().begin();
 		game.getBatch().draw(bgGame, 0, 0);
 		game.getBatch().draw(actor, actor.getX(), actor.getY());
-		game.getBatch().draw(cannon, cannon.getX(), cannon.getY());
+		//game.getBatch().draw(cannon, cannon.getX(), cannon.getY());
 		game.getBatch().draw(star, star.getX(), star.getY());
 		actor.movement();
 		cannon.drehen();
+		cannon.draw();
 		game.getBatch().end();
 		
 		//world.step(Gdx.graphics.getDeltaTime(), 6, 2);
