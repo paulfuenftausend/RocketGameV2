@@ -18,6 +18,7 @@ public class Cannon extends Sprite {
 		
 		sprite.setPosition(0-sprite.getWidth()/2, y - sprite.getHeight()/2);
 		sprite.setOrigin(sprite.getOriginX()-(getWidth()/8), sprite.getOriginY());
+		sprite.setScale(4);
 		
 		
 		
