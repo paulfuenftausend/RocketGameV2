@@ -23,6 +23,7 @@ public class MainMenu implements Screen {
 		this.game = game;
 		bg = new Texture("1916x1080_SpaceRace_Background.jpg");
 		startButton = new Sprite(new Texture("button-start-game.png"));
+		
 	}
 	
 
@@ -39,8 +40,6 @@ public class MainMenu implements Screen {
 		game.getBatch().draw(bg, 0, 0);
 		game.getBatch().draw(startButton, GameInfo.WIDTH/4, GameInfo.HEIGHT/2);
 		if(Gdx.input.equals(startButton) || Gdx.input.isButtonPressed(Input.Buttons.LEFT))
-			game.setScreen(new MainGame(game));
-		if (Gdx.input.isKeyPressed(Input.Keys.L))
 			game.setScreen(new MainGame(game));
 		game.getBatch().end();
 		
