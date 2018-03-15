@@ -23,7 +23,6 @@ public class MainMenu implements Screen {
 		this.game = game;
 		bg = new Texture("1916x1080_SpaceRace_Background.jpg");
 		startButton = new Sprite(new Texture("button-start-game.png"));
-		
 	}
 	
 
