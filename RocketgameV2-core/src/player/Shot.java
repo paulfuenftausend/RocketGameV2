@@ -15,10 +15,10 @@ public class Shot extends Sprite{
 	private Body body;
 	Vector2 direction;
 	float x,y;
+	public Sprite sprite;
 
-	public Shot(String texture, float x, float y, World world, Cannon cannon){
+	public Shot(String texture, float x, float y){
 		super(new Texture(texture));
-		this.world = world;
 		
 		this.x = x;
 		this.y = y;
