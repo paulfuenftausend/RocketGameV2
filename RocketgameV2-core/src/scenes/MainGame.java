@@ -29,8 +29,6 @@ public class MainGame implements Screen{
 	
 	private Cannon cannon;
 	
-	private World world;
-	
 	private Star star;
 	
 	
@@ -43,15 +41,16 @@ public class MainGame implements Screen{
 	public MainGame(MyGdxGame game){ //Constructor, wird in MainMenu gerufen
 		this.game = game;
 		bgGame = new Sprite(new Texture("2012-05-25 Virgo Haufen_DBE_ATWT_BN_CC_L_DONE_modified.jpg"));
-		world = new World(new Vector2(0, 0), true);		//Physik welt 	
+		
+		
+		actor = new Actor("SpaceShip Sprite.png", GameInfo.WIDTH/2, GameInfo.HEIGHT/2);
+		cannon = new Cannon("Turret Sprite.png", GameInfo.HEIGHT/2);
+		star = new Star("SpaceGem Sprite.png");
 	}
 	
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-		actor = new Actor("SpaceShip Sprite.png", GameInfo.WIDTH/2, GameInfo.HEIGHT/2, world);
-		cannon = new Cannon("Turret Sprite.png", GameInfo.HEIGHT/2);
-		star = new Star("SpaceGem Sprite.png");
 		//Array for bullets
 				bullets = new ArrayList<Shot>();
 				vector = new Vector2();
@@ -59,7 +58,7 @@ public class MainGame implements Screen{
 
 	@Override
 	public void render(float delta) {
-		//Shooting code
+		/*//Shooting code
 				vector.set(1,0);
 				vector.rotate(cannon.sprite.getRotation());
 				vector.setLength(cannon.sprite.getWidth()*2);
@@ -78,18 +77,20 @@ public class MainGame implements Screen{
 				//Update bullets
 				for(Shot bullet : bullets){
 					bullet.update(Gdx.graphics.getDeltaTime());
-				}
+				}*/
 		
 		game.getBatch().begin();
 		game.getBatch().draw(bgGame, 0, 0);
 		game.getBatch().draw(actor, actor.getX(), actor.getY());
 		game.getBatch().draw(star, star.getX(), star.getY());
 		actor.movement();
+		if(actor.hitBox.overlaps(star.hitBox))
+			star.newPosition();
+		//for(Shot bullet : bullets){
+		//	bullet.sprite.draw(game.getBatch());}
+		game.getBatch().end();
 		cannon.drehen();
 		cannon.draw();
-		for(Shot bullet : bullets){
-			bullet.sprite.draw(game.getBatch());}
-		game.getBatch().end();
 		
 	}
 
