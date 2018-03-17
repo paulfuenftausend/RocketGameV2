@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -31,6 +32,18 @@ public class MainGame implements Screen{
 	
 	private Star star;
 	
+	private int score;
+	
+	private String scoreName;
+	
+	private BitmapFont scoreFont;
+	
+	private int leben;
+	
+	private String lebenName;
+	
+	private BitmapFont lebenFont;
+	
 	
 	//Shooting
 			ArrayList<Shot> bullets;
@@ -51,6 +64,12 @@ public class MainGame implements Screen{
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
+		score = 0;
+		scoreName = "Space Gems: ";
+		scoreFont = new BitmapFont();
+		leben = 5;
+		lebenName = "Leben: ";
+		lebenFont = new BitmapFont();
 		//Array for bullets
 				bullets = new ArrayList<Shot>();
 				vector = new Vector2();
@@ -83,9 +102,15 @@ public class MainGame implements Screen{
 		game.getBatch().draw(bgGame, 0, 0);
 		game.getBatch().draw(actor, actor.getX(), actor.getY());
 		game.getBatch().draw(star, star.getX(), star.getY());
+		scoreFont.setColor(1, 1, 1, 1);
+		scoreFont.draw(game.getBatch(), scoreName+score, 0, GameInfo.HEIGHT- 20);
+		lebenFont.setColor(1, 1, 1, 1);
+		lebenFont.draw(game.getBatch(), lebenName+leben, 110, GameInfo.HEIGHT- 20);
 		actor.movement();
-		if(actor.hitBox.overlaps(star.hitBox))
+		if(actor.hitBox.overlaps(star.hitBox)){
 			star.newPosition();
+			score++;
+		}
 		//for(Shot bullet : bullets){
 		//	bullet.sprite.draw(game.getBatch());}
 		game.getBatch().end();
