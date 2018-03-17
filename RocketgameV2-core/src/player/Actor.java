@@ -18,17 +18,15 @@ public class Actor extends Sprite{
 	public Sprite sprite;
 	public Rectangle hitBox;
 	//Shooting
-	ArrayList<Shot> bullets;
+	public ArrayList<Shot> bullets;
 	Vector2 vector;
 	float fireRate = 400000000;
 	float lastShoot;
 	
 	public Actor(String texture, float x, float y){ //Konstruktor
-		//super(new Texture(texture));
-		
 		sprite = new Sprite(new Texture(texture));
 		sprite.setPosition(x - sprite.getWidth(), y - sprite.getHeight());
-		hitBox = new Rectangle(getX(), getY(), getWidth(), getHeight());
+		hitBox = new Rectangle(sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());
 		//Array for bullets
 		bullets = new ArrayList<Shot>();
 		vector = new Vector2();
@@ -106,6 +104,7 @@ public class Actor extends Sprite{
 			SpriteBatch batch = new SpriteBatch();
 			batch.begin();
 			bullet.sprite.draw(batch);
+			bullet.updateHitBox();
 			batch.end();
 		}
 	}

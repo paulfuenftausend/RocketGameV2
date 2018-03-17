@@ -4,14 +4,11 @@ package scenes;
 
 import java.util.ArrayList;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.MyGdxGame;
 
 import helpers.GameInfo;
@@ -67,7 +64,7 @@ public class MainGame implements Screen{
 		score = 0;
 		scoreName = "Space Gems: ";
 		scoreFont = new BitmapFont();
-		leben = 5;
+		leben = 1;
 		lebenName = "Leben: ";
 		lebenFont = new BitmapFont();
 		//Array for bullets
@@ -87,17 +84,27 @@ public class MainGame implements Screen{
 		lebenFont.setColor(1, 1, 1, 1);
 		lebenFont.draw(game.getBatch(), lebenName+leben, 110, GameInfo.HEIGHT- 20);
 		actor.movement();
-		actor.update();
-		actor.render();
 		if(actor.hitBox.overlaps(star.hitBox)){
 			star.newPosition();
 			score++;
+			if(score>=20){
+				game.setScreen(new Winner(game, "SpaceshipWin.png"));}
+			}
+		if(actor.bullets.size()>0){
+			if(actor.hitBox.overlaps(actor.bullets.get(0).hitBox)){
+				leben--;
+				if(leben<=0)
+					game.setScreen(new Winner(game, "CannonWin.png"));
+				actor.bullets.remove(actor.bullets.get(0));
+				}
 		}
-
 		game.getBatch().end();
+		
+		actor.update();
+		actor.render();
 		cannon.drehen();
 		cannon.draw();
-		
+	
 	}
 
 	@Override

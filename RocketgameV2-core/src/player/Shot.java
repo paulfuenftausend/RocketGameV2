@@ -4,21 +4,19 @@ package player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 
 public class Shot extends Sprite{
 	
 	Vector2 direction;
 	float x,y;
 	public Sprite sprite;
+	public static Rectangle hitBox;
 
 	public Shot(String texture, float x, float y){
 		sprite = new Sprite(new Texture(texture));
+		hitBox = new Rectangle(sprite.getX(), sprite.getY(), sprite.getHeight()/2, sprite.getWidth());
 		
 		this.x = x;
 		this.y = y;
@@ -37,5 +35,8 @@ public class Shot extends Sprite{
 		x += direction.x*deltaTime;
 		y += direction.y*deltaTime;
 		sprite.setPosition(x, y);
+	}
+	public void updateHitBox(){
+		hitBox.setPosition(sprite.getX(), sprite.getY());
 	}
 }
