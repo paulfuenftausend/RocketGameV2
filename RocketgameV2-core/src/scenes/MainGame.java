@@ -46,10 +46,10 @@ public class MainGame implements Screen{
 	
 	
 	//Shooting
-			ArrayList<Shot> bullets;
-			Vector2 vector;
-			float fireRate = 400000000;
-			float lastShoot;
+	ArrayList<Shot> bullets;
+	Vector2 vector;
+	float fireRate = 400000000;
+	float lastShoot;
 	
 	public MainGame(MyGdxGame game){ //Constructor, wird in MainMenu gerufen
 		this.game = game;
@@ -77,42 +77,23 @@ public class MainGame implements Screen{
 
 	@Override
 	public void render(float delta) {
-		/*//Shooting code
-				vector.set(1,0);
-				vector.rotate(cannon.sprite.getRotation());
-				vector.setLength(cannon.sprite.getWidth()*2);
-				if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-					if(System.nanoTime()-lastShoot >= fireRate) {
-						Shot bullet = new Shot("FireShotSprite.png", (0-(cannon.sprite.getWidth()/8))+vector.x,255+vector.y);
-							
-						bullet.setMovingDirection(cannon.sprite.getRotation(), (5*cannon.sprite.getWidth())/8);
-						bullet.sprite.setRotation(cannon.sprite.getRotation());
-						bullet.update(Gdx.graphics.getDeltaTime());
-						bullets.add(bullet);
-						lastShoot = System.nanoTime();
-					}
-				}
-						
-				//Update bullets
-				for(Shot bullet : bullets){
-					bullet.update(Gdx.graphics.getDeltaTime());
-				}*/
 		
 		game.getBatch().begin();
 		game.getBatch().draw(bgGame, 0, 0);
-		game.getBatch().draw(actor, actor.getX(), actor.getY());
+		game.getBatch().draw(actor.sprite, actor.sprite.getX(), actor.sprite.getY());
 		game.getBatch().draw(star, star.getX(), star.getY());
 		scoreFont.setColor(1, 1, 1, 1);
 		scoreFont.draw(game.getBatch(), scoreName+score, 0, GameInfo.HEIGHT- 20);
 		lebenFont.setColor(1, 1, 1, 1);
 		lebenFont.draw(game.getBatch(), lebenName+leben, 110, GameInfo.HEIGHT- 20);
 		actor.movement();
+		actor.update();
+		actor.render();
 		if(actor.hitBox.overlaps(star.hitBox)){
 			star.newPosition();
 			score++;
 		}
-		//for(Shot bullet : bullets){
-		//	bullet.sprite.draw(game.getBatch());}
+
 		game.getBatch().end();
 		cannon.drehen();
 		cannon.draw();

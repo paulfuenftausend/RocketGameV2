@@ -11,7 +11,17 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Cannon extends Sprite {
 
-	public Sprite sprite;
+	public static Sprite sprite;
+	
+	public static final float RotationDegrees()
+	{
+		return sprite.getRotation();
+	}
+	public static final float Width()
+	{
+		return sprite.getWidth();
+	}
+	
 
 	public Cannon(String texture, float y){
 		//super(new Texture(texture));
@@ -51,4 +61,6 @@ public class Cannon extends Sprite {
 		batch.end();
 	}
 }
+
+
 
