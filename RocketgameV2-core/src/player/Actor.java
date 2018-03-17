@@ -13,13 +13,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Actor extends Sprite{
-<<<<<<< HEAD
 	float movementSpeed = 3;
-	
-=======
-	int movementSpeed = 3;
+
 	public Sprite sprite;
->>>>>>> c29d1510ef588936639e7649e535efcaf02bbbe0
 	public Rectangle hitBox;
 	//Shooting
 	ArrayList<Shot> bullets;
