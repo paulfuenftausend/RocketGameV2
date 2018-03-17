@@ -22,6 +22,7 @@ public class Shot extends Sprite{
 		
 		this.x = x;
 		this.y = y;
+		sprite.setPosition(x, y);
 		
 	}
 	
@@ -35,6 +36,6 @@ public class Shot extends Sprite{
 	public void update(float deltaTime){
 		x += direction.x*deltaTime;
 		y += direction.y*deltaTime;
-		setPosition(x, y);
+		sprite.setPosition(x, y);
 	}
 }
