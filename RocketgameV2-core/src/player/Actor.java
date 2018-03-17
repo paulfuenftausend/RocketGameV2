@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Actor extends Sprite{
-	int movementSpeed = 3;
+	float movementSpeed = 3;
 	
 	public Rectangle hitBox;
 	
