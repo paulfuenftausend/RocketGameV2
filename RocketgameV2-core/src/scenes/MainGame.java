@@ -41,12 +41,13 @@ public class MainGame implements Screen{
 	
 	private BitmapFont lebenFont;
 	
+	private String cannonScoreName;
 	
-	//Shooting
-	ArrayList<Shot> bullets;
-	Vector2 vector;
-	float fireRate = 400000000;
-	float lastShoot;
+	private BitmapFont cannonScoreFont;
+
+	
+	
+
 	
 	public MainGame(MyGdxGame game){ //Constructor, wird in MainMenu gerufen
 		this.game = game;
@@ -67,9 +68,9 @@ public class MainGame implements Screen{
 		leben = 1;
 		lebenName = "Leben: ";
 		lebenFont = new BitmapFont();
-		//Array for bullets
-				bullets = new ArrayList<Shot>();
-				vector = new Vector2();
+		cannonScoreName = "Space Gems Cannon: ";
+		cannonScoreFont = new BitmapFont();
+
 	}
 
 	@Override
@@ -83,6 +84,8 @@ public class MainGame implements Screen{
 		scoreFont.draw(game.getBatch(), scoreName+score, 0, GameInfo.HEIGHT- 20);
 		lebenFont.setColor(1, 1, 1, 1);
 		lebenFont.draw(game.getBatch(), lebenName+leben, 110, GameInfo.HEIGHT- 20);
+		cannonScoreFont.setColor(1, 1, 1, 1);
+		cannonScoreFont.draw(game.getBatch(), cannonScoreName+cannon.ScoreCannon(), 220, GameInfo.HEIGHT- 20 );
 		actor.movement();
 		if(actor.hitBox.overlaps(star.hitBox)){
 			star.newPosition();
@@ -97,6 +100,13 @@ public class MainGame implements Screen{
 					game.setScreen(new Winner(game, "CannonWin.png"));
 				actor.bullets.remove(actor.bullets.get(0));
 				}
+		}
+		if(actor.bullets.size()>0){
+			if(star.hitBox.overlaps(actor.bullets.get(0).hitBox)){
+				star.newPosition();
+				cannon.score++;	
+				actor.bullets.remove(actor.bullets.get(0));
+			}	
 		}
 		game.getBatch().end();
 		

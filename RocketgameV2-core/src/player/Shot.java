@@ -13,6 +13,8 @@ public class Shot extends Sprite{
 	float x,y;
 	public Sprite sprite;
 	public static Rectangle hitBox;
+	public int speed = 3;
+
 
 	public Shot(String texture, float x, float y){
 		sprite = new Sprite(new Texture(texture));
@@ -32,8 +34,8 @@ public class Shot extends Sprite{
 		direction.setLength(length);
 	}
 	public void update(float deltaTime){
-		x += direction.x*deltaTime;
-		y += direction.y*deltaTime;
+		x += direction.x*deltaTime*speed;
+		y += direction.y*deltaTime*speed;
 		sprite.setPosition(x, y);
 	}
 	public void updateHitBox(){

@@ -12,6 +12,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class Cannon extends Sprite {
 
 	public static Sprite sprite;
+	public static int score;
+	
+	public static final int ScoreCannon()
+	{
+		return score;
+	}
 	
 	public static final float RotationDegrees()
 	{
